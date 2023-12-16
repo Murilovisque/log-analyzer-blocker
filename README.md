@@ -1,2 +1,2 @@
-# log-analyzer-blocker
-App that analyzes logs and performs blocking
+# monitor-blocker
+App that monit changes and performs blocking

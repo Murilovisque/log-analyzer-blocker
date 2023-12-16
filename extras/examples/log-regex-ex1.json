@@ -1,0 +1,33 @@
+{
+    "monitors": [
+        {
+            "type": "REGEX_TAIL_FILE",
+            "name": "REGEX_UFW_BLOCK_SYSLOG",
+            "targetBlockers": [
+                "UFW_PORT_8000_9000"
+            ],
+            "specification": {
+                "regex": "UFW BLOCK\\].+SRC=([^\\s+]+)",
+                "file": "/var/log/syslog",
+                "violations": [
+                    {
+                        "penaltyLimit": 3,
+                        "occurenceDuration": "1m",
+                        "penaltyDuration": "5m"
+                    }
+                ]
+            }
+        }
+    ],
+    "blockers": [
+        {
+            "type": "UFW_BLOCKER",
+            "name": "UFW_PORT_8000_9000",
+            "specification": {
+                "ports": [8000, 9000],
+                "poolSize": 3,
+                "checkExpirationDuration": "30s"
+            }
+        }
+    ]
+}
